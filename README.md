@@ -1,2 +1,2 @@
-# fabiocalefato
-Personal website of Fabio Calefato, assistant professor at the University of Bari
+# Fabio Calefato
+Assistant professor at the University of Bari
