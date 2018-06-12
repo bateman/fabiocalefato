@@ -1,0 +1,56 @@
+---
+layout: page
+title: Guida installazione e configurazione ambiente di sviluppo Eclipse CDT & CUnit
+  [#Linux]
+date: 2015-02-23 17:09:10.000000000 +01:00
+type: page
+parent_id: '25'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _edit_last: '2'
+  spacious_page_layout: default_layout
+  _wp_page_template: default
+  _wpas_done_all: '1'
+author:
+  login: fabio
+  email: fabio.calefato@uniba.it
+  display_name: Fabio
+  first_name: Fabio
+  last_name: Calefato
+---
+<p>Questo tutorial descrive i passi necessari per l'installazione e la configurazione su macchine Linux (Ubuntu e distribuzioni derivate) dell'ambiente di sviluppo Eclipse CDT con CUnit.</p>
+<p>Sono necessari i privilegi di root (sudo user).</p>
+<h3>Nota per gli altri OS *nix</h3>
+<p>Per sistemi Mac OS X, occorre prima installare X Code, la suite di sviluppo di Apple, che porta con sé il compilatore C. Una volta installato, anche Eclipse CDT funzionerà correttamente.</p>
+<h3>Installazione Eclipse CDT</h3>
+<p>Questo passo provvede a installare l'ambiente Eclipse CDT. <a href="https://www.eclipse.org/downloads/" target="_blank">Effettuate il download di “Eclipse IDE for C/C++ Developers”</a>, accertandovi di selezionare il sistema operativo corretto e l'architettura giusta (32 o 64 bit).</p>
+<p>Per  installare è sufficiente decomprimere l’archivio in una cartella qualunque,  per es. “~/eclipseCDT/”.</p>
+<p style="text-align: center;"> <a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2015/02/Screenshot-from-2015-02-23-174756.png"><img class="alignnone wp-image-630 " title="downloadcdt" src="{{ site.baseurl }}/assets/Screenshot-from-2015-02-23-174756.png" alt="" width="541" height="532" /></a></p>
+<p style="text-align: center;"><strong>Figura 1</strong></p>
+<p>Per eseguire Eclipse CDT lanciare lo script "eclipse" presente nella directory scompattata.</p>
+<h3>Download delle librerie standard del C</h3>
+<p>Aprire il terminale (Ctrl+Alt+t) e digitare il comando:</p>
+<p>sudo apt-get install build-essential</p>
+<h3>Installazione di CUnit</h3>
+<p>Aprire il terminale (Ctrl+Alt+t) e digitare il comando:</p>
+<p>sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev</p>
+<h3>Configurazione Eclipse CDT</h3>
+<p>A questo punto siete pronti ad eseguire eclipse e a compilare programmi C/C++. Avviate Eclipse e selezionate il workspace, cioè la cartella dove risiederanno i progetti. Per creare un nuovo progetto C, selezionate il wizard corrispondente (File -&gt; New -&gt; C Project).</p>
+<p>Nel wizard inserite il nome progetto (in questo caso “HelloW”). Dopodiché, selezionate Executable (perché vogliamo creare un programma eseguibile in questo caso) e “Hello World Ansi C Project”. Fate attenzione a scegliere “Linux GCC” nella lista Toolchains (è il compilatore già presente nei sistemi Linux). A questo punto, premete “Finish” per creare il progetto.</p>
+<p><a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2015/02/Screenshot-from-2015-02-23-180657.png"><img class=" wp-image-632  aligncenter" title="helloworld" src="{{ site.baseurl }}/assets/Screenshot-from-2015-02-23-180657.png" alt="" width="432" height="535" /></a></p>
+<p style="text-align: center;"><strong>Figura 2</strong></p>
+<p>Una volta creato, il progetto conterrà uno scheletro main.c per la stampa di una stringa. Per ottenere "l'eseguibile" del codice, compilare il sorgente premendo il tasto "Build All" (Ctrl+b) nella toolbar.</p>
+<p><a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2015/02/Screenshot-from-2015-02-23-181940.png"><img class="  wp-image-633 size-full aligncenter" title="helloworld" src="{{ site.baseurl }}/assets/Screenshot-from-2015-02-23-181940.png" alt="" width="606" height="114" /></a></p>
+<p style="text-align: center;"><strong>Figura 2</strong></p>
+<p>&nbsp;</p>
+<p>Se tutto è andato a buon fine, troverete una cartella “Binaries” tra le cartelle di progetto. Selezionate il file nella cartella Binaries (in questo caso HelloW). A questo punto potete eseguire il programma compilato all’interno di eclipse,  premendo il tasto “Run”  sulla toolbar e selezionate “Run As &gt; Local C/C++ Application”, come da figura. L’output del programma comparirà nella vista “Console” in basso.</p>
+<p><a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2015/02/Screenshot-from-2015-02-23-182450.png"><img class=" wp-image-634  aligncenter" title="run" src="{{ site.baseurl }}/assets/Screenshot-from-2015-02-23-182450.png" alt="" width="776" height="508" /></a></p>
+<p style="text-align: center;"><strong>Figura 3</strong></p>
+<p>&nbsp;</p>
+<p>Poiché la nostra applicazione avrà bisogno di eseguire casi di test in CUnit, è necessario informare il compilatore su dove trovare la libreria esterna. Per far questo, selezionate la cartella del progetto, premete il tasto destro e quindi scegliete “Proprietà” (figura 4). Dalla finestra delle proprietà, scegliete “C/C++ Build &gt; Settings”. Dopodichè, nel tab “Settings” scegliete la voce “Libraries” sotto la voce “GCC C Linker”. Quindi cliccate sul tasto per aggiungere la libreria. Per includere le librerie inerenti CUnit dovete soltanto scrivere “cunit”.</p>
+<p><a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2015/02/Screenshot-from-2015-02-24-105347.png"><img class=" wp-image-635  alignnone" title="cunit" src="{{ site.baseurl }}/assets/Screenshot-from-2015-02-24-105347.png" alt="" width="204" height="419" /></a>    <a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2015/02/Screenshot-from-2015-02-24-110110.png"><img class="alignnone wp-image-636 " title="cunit" src="{{ site.baseurl }}/assets/Screenshot-from-2015-02-24-110110.png" alt="" width="392" height="424" /></a>   <a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2015/02/Screenshot-from-2015-02-24-110347.png"><img class="alignnone wp-image-637 " title="cunit" src="{{ site.baseurl }}/assets/Screenshot-from-2015-02-24-110347.png" alt="" width="381" height="418" /></a></p>
+<p style="text-align: center;"><strong>Figura 4</strong></p>

@@ -1,0 +1,64 @@
+---
+layout: page
+title: Guida installazione e configurazione ambiente di sviluppo Eclipse CDT & CUnit
+  [#Windows]
+date: 2012-02-27 17:09:54.000000000 +01:00
+type: page
+parent_id: '25'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _edit_last: '2'
+  _wp_page_template: default
+  spacious_page_layout: default_layout
+author:
+  login: fabio
+  email: fabio.calefato@uniba.it
+  display_name: Fabio
+  first_name: Fabio
+  last_name: Calefato
+---
+<p>Questo tutorial descrive i passi necessari per l'installazione e la configurazione su macchine Windows dell'ambiente di sviluppo Eclipse CDT con CUnit.</p>
+<p>Prima di procedere all'installazione, occorre effettuare il dowload dei seguenti pacchetti:</p>
+<ol>
+<li><a href="http://www.eclipse.org/downloads/" target="_blank">Eclipse CDT per Windows</a></li>
+<li><a href="http://sourceforge.net/projects/mingw/files/Installer/mingw-get-setup.exe/download" target="_blank">MinGW</a></li>
+<li><a href="http://collab.di.uniba.it/~fabio/lab-info/CUnit-2.1-0-winlib.zip">CUnit test framework</a></li>
+</ol>
+<h3>Installazione Eclipse CDT in Windows</h3>
+<p>Questo passo provvede a installare l'ambiente Eclipse CDT. Effettuate il download di “Eclipse IDE for C/C++ Developers”, accertandovi di selezionare il sistema operativo corretto e l'architettura giusta (32 o 64 bit).</p>
+<p>Per  installare è sufficiente decomprimere l’archivio in una cartella qualunque,  per es. “C<em>:\eclipsecdt</em>”.</p>
+<p style="text-align: center;"> <a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2012/02/downloadcdt.png"><img class="alignnone wp-image-62 size-medium" title="downloadcdt" src="{{ site.baseurl }}/assets/downloadcdt-300x208.png" alt="" width="300" height="208" /></a></p>
+<p style="text-align: center;"><strong>Figura 1</strong></p>
+<p>Nota: Eclipse è un'applicazione Java. Pertanto, per essere eseguita, ha bisogno che abbiate installata sulla vostra macchina il runtime environment. Potete scaricare il JRE da questo <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">indirizzo</a>.</p>
+<h3>Installazione MinGW</h3>
+<p>Effettuate il download del compilatore MinGW (GCC) scaricando ed eseguendo il file "mingw-get-setup." (Nota: avrete bisogno di essere collegati a Internet per eseguire l'installazione). Lanciato, l'installer di MinGW, per prima cosa espandete la voce “All Packages”, quindi selezionate "MinGW Base system" nell'albero a sinistra, individuate nella lista a destra la voce "mingw32-base" e con il tasto destro scegliete "Mark for installation". A questo punto, dal menu "Installation" in alto a sinistra scegliete la voce "Apply changes" e poi premete sul pulsante “Apply”: l'installer si scaricherà e installerà automaticamente l'ultima versione del compilatore e le sue dipendenze.</p>
+<p style="text-align: center;"><strong><a href="http://193.204.187.161/fabiocorsi/wp-content/uploads/sites/5/2014/02/mingw-installer.png"><img class="aligncenter  wp-image-290" src="{{ site.baseurl }}/assets/mingw-installer.png" alt="mingw installer" width="395" height="321" /></a></strong><strong><a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2012/02/fig2b.png"><img class="alignnone wp-image-605" src="{{ site.baseurl }}/assets/fig2b-300x156.png" alt="" width="500" height="259" /></a></strong></p>
+<p style="text-align: center;"><strong>Figura 2</strong></p>
+<p>Terminata l'installazione, aggiungete il percorso “<strong>C:\MinGW\bin</strong>” alla variabile di ambiente <em>Path</em>. Per fare questo, cliccate con il tasto destro su “Computer” e Scegliete “Proprietà”. Selezionate il tab “Impostazioni Avanzate” e quindi premete il bottone “Variabili di ambiente”. Selezionate la variabile di ambiente <em>Path</em> dalla lista e cliccate “Modifica”. Nel campo “Valore variabile” dovete aggiungere il percorso “<strong>C:\MinGW\bin</strong>” . È importante che 1) non cancelliate i percorsi preesistenti; 2) tutti i percorsi in questo campo siano separati da dei “;” senza aggiungere spazi.</p>
+<p><a href="http://193.204.187.161/fabiocorsi/wp-content/uploads/sites/5/2012/02/path-2.png"><img class="aligncenter size-full wp-image-66" title="path" src="{{ site.baseurl }}/assets/path-2.png" alt="" width="517" height="380" /></a></p>
+<p style="text-align: center;"><strong>Figura 3</strong></p>
+<p>Verificate che l’installazione di gcc sia andata a buon fine. Aprite la finestra dei comandi e digitate il comando <strong><em>gcc ‐v</em></strong>. Se il setup è andato a buon fine, vedrete un output simile al seguente:</p>
+<p><a href="http://193.204.187.161/fabiocorsi/wp-content/uploads/sites/5/2012/02/command.png"><img class="aligncenter size-full wp-image-67" title="command" src="{{ site.baseurl }}/assets/command.png" alt="" width="451" height="157" /></a></p>
+<p style="text-align: center;"><strong>Figura 4 </strong></p>
+<h3>Installazione CUnit</h3>
+<p>Scaricate lo zip di <a href="http://collab.di.uniba.it/fabio/wp-content/uploads/sites/5/2012/02/CUnit-2.1-0-winlib.zip" target="_blank">CUnit</a> e scompattatelo in una cartella a scelta, per esempio <strong>C:\CUnit-2.1-0-winlib\CUnit-2.1-0</strong>. All'interno della sottocartella include troverete un'altra cartella chiamata <em>CUnit</em>. Prendetela e copiatela all'interno della cartella <strong>C:\MinGW\include</strong>. Ora invece, andate nella cartella <strong>C:\CUnit-2.1-0-winlib\CUnit-2.1-0\lib</strong>. Vi troverete due file, <em>libcunit.a</em> e <em>libcunit_dll.a</em>, che dovrete copiare in <strong>C:\MinGW\lib</strong>. Infine, copiate il file libcunit.dll che si trova in <strong>C:\CUnit-2.1-0-winlib\CUnit-2.1-0\bin</strong> all'interno della cartella <strong>C:\MinGW\bin</strong>.</p>
+<h3>Configurazione Eclipse CDT</h3>
+<p>A questo punto siete pronti ad eseguire eclipse.exe e a compilare programmi C/C++. Avviate Eclipse e selezionate il workspace, cioè la cartella dove risiederanno i progetti. Per creare un nuovo progetto C, selezionate il wizard corrispondente come da figura.<span style="text-align: center;"> </span></p>
+<p><a href="http://193.204.187.161/fabiocorsi/wp-content/uploads/sites/5/2012/02/newproject-1.png"><img class="aligncenter size-full wp-image-69" title="newproject" src="{{ site.baseurl }}/assets/newproject-1.png" alt="" width="557" height="366" /></a></p>
+<p style="text-align: center;"><strong>Figura 5</strong></p>
+<p>Nel wizard inserite il nome progetto (in questo caso “HelloW”). Dopodiché, selezionate Executable (perché vogliamo creare un programma eseguibile in questo caso) e “Hello World Ansi C Project”. Fate attenzione a scegliere “MinGW GCC” nella lista toolchain (è il compilatore che abbiamo installato nei passi precedenti). A questo punto, premete “Finish” per creare il progetto.</p>
+<p><a href="http://193.204.187.161/fabiocorsi/wp-content/uploads/sites/5/2012/02/helloworld.png"><img class="aligncenter size-full wp-image-70" title="helloworld" src="{{ site.baseurl }}/assets/helloworld.png" alt="" width="335" height="365" /></a></p>
+<p style="text-align: center;"><strong>Figura 6</strong></p>
+<p>Una volta creato, il progetto conterrà uno scheletro main.c per la stampa di una stringa. Per compilare, premete il simbolo del martello oppure CTRL+b. Se tutto è andato a buon fine, troverete una cartella “Binaries” tra le cartelle di progetto. Selezionate il file exe nella cartella Binaries. A questo punto potete eseguire il programma compilato all’interno di eclipse,  premendo il tasto “Run”  sulla toolbar e selezionate “Run As &gt; Local C/C++ Application”, come da figura. L’output del programma comparirà nella vista “Console” in basso.</p>
+<p><a href="http://193.204.187.161/fabiocorsi/wp-content/uploads/sites/5/2012/02/run.png"><img class="aligncenter size-full wp-image-71" title="run" src="{{ site.baseurl }}/assets/run.png" alt="" width="489" height="292" /></a></p>
+<p style="text-align: center;"><strong>Figura 7</strong></p>
+<p>Invece, per eseguire il programma “esternamente” dal prompt dei comandi, selezionate il file eseguibile, premete il tasto destro e dal menu contestuale selezionate “Open with &gt; System editor”.</p>
+<p><a href="http://193.204.187.161/fabiocorsi/wp-content/uploads/sites/5/2012/02/openwith.png"><img class="aligncenter size-full wp-image-73" title="openwith" src="{{ site.baseurl }}/assets/openwith.png" alt="" width="365" height="211" /></a></p>
+<p style="text-align: center;"><strong>Figura 8</strong></p>
+<p>Poiché la nostra applicazione avrà bisogno di eseguire casi di test in CUnit, è necessario informare il compilatore su dove trovare la libreria esterna. Per far questo, selezionate la cartella del progetto, premete il tasto destro e quindi scegliete “Proprietà”. Dalla finestra delle proprietà, scegliete “C/C++ Build &gt; Settings”. Dopodichè, nel tab “Settings” scegliete la voce “Libraries” sotto la voce “MinGW C Linker”. Quindi cliccate sul tasto  per aggiungere la libreria. Per includere le librerie “libcunit.a” e “libcunit_dll.a” dovete soltanto scrivere “cunit” e “cunit_dll”.</p>
+<p><a href="http://193.204.187.161/fabiocorsi/wp-content/uploads/sites/5/2012/02/cunit.png"><img class="aligncenter size-full wp-image-74" title="cunit" src="{{ site.baseurl }}/assets/cunit.png" alt="" width="592" height="360" /></a></p>
+<p style="text-align: center;"><strong>Figura 9</strong></p>
